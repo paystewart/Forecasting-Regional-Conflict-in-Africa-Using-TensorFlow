@@ -12,12 +12,12 @@ Predicting political violence is inherently difficult due to the "sparse" nature
 By using Collaborative Filtering via Neural Embeddings, the model learns latent patterns of violence that move across regions and time.
 
 ## **The Model: Deep Recursive Forecasting**
-The core of this system is a Negative Binomial Neural Network built in TensorFlow. Unlike standard regression, this model handles the "over-dispersion" of conflict data (where most weeks are quiet, but some are extremely violent).
+The core of this system is a Negative Binomial Neural Network built in TensorFlow. Unlike standard regression, this model handles the "over-dispersion" of conflict data (where most weeks are quiet, but some are extremely violent), and we see this through the Negative Binomial Log Loss Function utilized. Ultimately, the model underpredicts large conflict counts, but the assumption that latent structures exist along countries and weeks is supported.
 
 **Key Features:**
-- Entity Embeddings: High-dimensional representations for countries and weeks to capture regional similarities.
+- Entity Embeddings: High-dimensional representations for countries and weeks to capture latent regional and time similarities.
 - Recursive Lag Logic: The model uses its own $t+1$ prediction as the input for $t+2$, allowing for a multi-step look-ahead.
-- Uncertainty Quantification: Optimized to minimize RMSLE (Root Mean Squared Logarithmic Error), ensuring the model isn't overly penalized for small misses in high-intensity zones.
+- Respect for Time Series Data: The model preserves the serial dependence of data and accounts for conflict persistence.
 
 ## **Visualizing the Conflict Horizon**
 The project includes visualization tools designed for policy-makers, researchers or other users wanting to view data from the model.
